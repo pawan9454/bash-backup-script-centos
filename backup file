@@ -1,0 +1,30 @@
+#shell script for backup of home directory in linux
+
+#!/bin/bash 
+# This script is for backing up home directory 
+ 
+# Get the current date 
+DATE=$(date +%Y-%m-%d) 
+ 
+# Set the backup directory 
+BACKUP_DIR="/home/backup" 
+ 
+# Create the backup directory 
+if [ ! -d "$BACKUP_DIR" ] 
+then 
+    mkdir -p "$BACKUP_DIR" 
+fi 
+ 
+# Create the backup file 
+BACKUP_FILE="$BACKUP_DIR/home_$DATE.tar.gz" 
+ 
+# Backup the home directory 
+tar -zcf "$BACKUP_FILE" /home 
+ 
+# Verify that the backup file was created 
+if [ -f "$BACKUP_FILE" ] 
+then 
+    echo "Backup of home directory successfully created at $BACKUP_FILE"
+else 
+    echo "Backup of home directory failed"
+fi
